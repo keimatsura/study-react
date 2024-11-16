@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Head from 'next/head';
 import Footer from "../components/Footer";
 import Links from "@/components/Links";
+import List from "@/components/List";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,7 +21,7 @@ export default function Home() {
 <div
       className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
     >
-
+<h1>About Pages</h1>
 <Head>
         <title>About Page</title>
       </Head>
@@ -34,16 +35,7 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              pages/about.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+       <List title="About Page!!!"/>
 
         <Links />
       </main>
