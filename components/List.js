@@ -4,7 +4,7 @@ import Image from "next/image";
 export default
  function List(props) {
 
-  console.log(props.title);
+  
   
   return (
     <>
@@ -16,11 +16,13 @@ export default
         </code>
         .
       </li>
-      <li>Save and see your changes instantly.</li>
+      {props.list}
     </ol>
     <div>
       <Image></Image>
+    <button onClick={props.onClick}>ボタン</button>
     </div>
     </>
+    
     );
 }
