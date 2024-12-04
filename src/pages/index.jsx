@@ -17,17 +17,21 @@ const geistMono = localFont({
 
 export default function Home() {
   const [foo, setFoo] = useState(1);
-  // let foo = 1;
-  const handleClick = (e) => {
-    setFoo((foo) => foo + 1);
-    // foo = foo + 1;
-  };
+
+  const handleClick = useCallback(() => {
+    if (foo < 10) {
+      setFoo((foo) => foo + 1);
+    }
+  }, [foo]);
   useEffect(() => {
+    console.log("foo");
+
     document.body.style.backgroundColor = "lightblue";
     return () => {
       document.body.style.backgroundColor = "";
+      console.log("bar");
     };
-  }, []);
+  }, [foo]);
 
   return (
     <div
