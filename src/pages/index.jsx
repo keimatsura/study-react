@@ -17,30 +17,59 @@ const geistMono = localFont({
 
 export default function Home() {
   const [foo, setFoo] = useState(1);
+  const [text, settext] = useState("");
+  const [isShow, setisShow] = useState(true);
 
-  const handleClick = useCallback(() => {
-    if (foo < 10) {
-      setFoo((foo) => foo + 1);
+  const handleChange = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert("5文字以内にしてください");
+      return;
     }
-  }, [foo]);
-  useEffect(() => {
-    console.log("foo");
+    settext(e.target.value);
+  }, []);
 
+  const handleUP = () => {
+    setFoo((foo) => foo + 1);
+  };
+
+  const handleDisplay = () => {
+    setisShow((isShow) => !isShow);
+  };
+
+  useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
     return () => {
       document.body.style.backgroundColor = "";
       console.log("bar");
     };
-  }, [foo]);
+  }, []);
 
   return (
     <div
       className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
     >
       <Header />
-      <h1>{foo}</h1>
-      <button onClick={handleClick}>ボタン</button>
 
+      {isShow ? (
+        <>
+          <h1>{foo}</h1>
+          <button
+            onClick={handleUP}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            UP
+          </button>
+        </>
+      ) : null}
+
+      <button
+        onClick={handleDisplay}
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+      >
+        {isShow ? "表示" : "非表示"}
+      </button>
+
+      <input type="text" value={text} onChange={handleChange} />
       <Main page="index" />
       <Footer />
     </div>
